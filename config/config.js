@@ -1,18 +1,18 @@
+const path = require('path')
+
 module.exports = {
-  development: {
-    dialect: "sqlite",
-    storage: "./db.development.sqlite"
+  port: process.env.PORT || 8081,
+  db: {
+    database: process.env.DB_NAME || 'tabtracker',
+    user: process.env.DB_USER || 'tabtracker',
+    password: process.env.DB_PASS || 'tabtracker',
+    options: {
+      dialect: process.env.DIALECT || 'sqlite',
+      host: process.env.HOST || 'localhost',
+      storage: path.resolve(__dirname, '../../tabtracker.sqlite')
+    }
   },
-  test: {
-    dialect: "sqlite",
-    storage: ":memory:"
-  },
-  production: {
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOSTNAME,
-    dialect: 'mysql',
-    use_env_variable: 'DATABASE_URL'
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
   }
-};
+}

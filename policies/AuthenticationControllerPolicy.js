@@ -6,7 +6,10 @@ module.exports = {
       email: Joi.string().email(),
       password: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
-      )
+      ),
+      username: Joi.string(),
+      firstName: Joi.string(),
+      lastName: Joi.string()
     }
 
     const {error} = Joi.validate(req.body, schema)

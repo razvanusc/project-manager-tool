@@ -6,8 +6,10 @@ function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
   return jwt.sign(user, config.authentication.jwtSecret, {
     expiresIn: ONE_WEEK
+
   })
 }
+
 
 module.exports = {
   async register (req, res) {
@@ -27,12 +29,11 @@ module.exports = {
   async login (req, res) {
     try {
       const {email, password} = req.body
-      const user = await User.findOne({
+      const user = await User.find({
         where: {
           email: email
         }
       })
-
       if (!user) {
         return res.status(403).send({
           error: 'The login information was incorrect'
@@ -40,7 +41,7 @@ module.exports = {
       }
 
       const isPasswordValid = await user.comparePassword(password)
-      if (!isPasswordValid) {
+      if (isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect'
         })
