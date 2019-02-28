@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  dialect: process.env.DIALECT || 'sqlite',
   port: process.env.PORT || 8081,
   db: {
     database: process.env.DB_NAME || 'tabtracker',
@@ -9,7 +10,10 @@ module.exports = {
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
-      storage: path.resolve(__dirname, '../../tabtracker.sqlite')
+      storage: path.resolve(__dirname, '../../tabtracker.sqlite'),
+      define: {
+        schema: "core"
+      }
     }
   },
   authentication: {

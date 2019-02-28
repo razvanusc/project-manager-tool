@@ -35,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       type: DataTypes.STRING,
       validate: {notEmpty: true}
-    }
+    },
+    role: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate: hashPassword,

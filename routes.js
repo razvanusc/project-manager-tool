@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const ProjectController = require('./controllers/ProjectController')
@@ -20,7 +20,7 @@ router.post('/projects/create',
 
 router.get('/users',
   UserController.getUsers)
-router.get('/users/:user_id',
+router.get('/users/me',
   UserController.getUser)
 
 module.exports = router;

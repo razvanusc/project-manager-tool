@@ -13,7 +13,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        unique: true 
+        unique: true
       },
       password: {
         type: Sequelize.STRING
@@ -23,6 +23,13 @@ module.exports = {
       },
       lastName: {
         type: Sequelize.STRING
+      },
+      roles: {
+        type: [{
+          type: Sequelize.STRING,
+          enum: ['user', 'admin']
+        }],
+        default: ['user']
       },
       createdAt: {
         allowNull: false,

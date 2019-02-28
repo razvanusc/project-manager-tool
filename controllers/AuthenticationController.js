@@ -1,6 +1,7 @@
 const {User} = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
+const Role = require('../_helpers/role');
 
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
@@ -14,7 +15,8 @@ function jwtSignUser (user) {
 module.exports = {
   async register (req, res) {
     try {
-      const user = await User.create(req.body)
+      const { username, email, password, firstName, lastName } = req.body;
+      const user = await User.create({username, email, password, firstName, lastName, role: Role.User})
       const userJson = user.toJSON()
       res.send({
         user: userJson,
