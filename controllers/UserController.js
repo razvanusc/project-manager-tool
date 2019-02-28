@@ -11,11 +11,7 @@ module.exports = {
       if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
 
       if (decoded.role === 'Admin') {
-        User.findAll({
-          where: {
-            role: 'User'
-          }
-        }).then(function (users) {
+        User.findAll().then(function (users) {
                 res.send(users);
             });
       } else {
